@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinyu Shen | Portfolio</title>
+    <style>
+        /* =========================================
+           1. 核心变量与粗野主义基底
+           ========================================= */
+        :root {
+            --bg-color: #f4f4f0;
+            --text-main: #000000;
+            --neon-green: #ccff00;
+            --neon-pink: #ff00cc;
+            --neon-blue: #00e5ff;
+            --border-hard: 3px solid #000;
+            --shadow-hard: 8px 8px 0px #000;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#000 1px, transparent 1px);
+            background-size: 20px 20px;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        /* =========================================
+           2. 便当盒网格（Bento Grid）拓扑
+           ========================================= */
+        .bento-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, auto);
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .bento-box {
+            background: #fff;
+            border: var(--border-hard);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow-hard);
+            transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-box:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px #000;
+        }
+
+        /* 网格跨度分配 */
+        .box-hero { grid-column: span 3; grid-row: span 2; background: var(--neon-green); }
+        .box-goal { grid-column: span 1; grid-row: span 1; background: var(--neon-blue); color: #000; }
+        .box-exp { grid-column: span 1; grid-row: span 1; background: #fff; }
+        .box-skills { grid-column: span 4; grid-row: span 1; background: var(--neon-pink); padding: 0; display: flex; align-items: center; }
+
+        /* =========================================
+           3. 极端排版与内容渲染
+           ========================================= */
+        h1 { 
+            font-size: 5vw; 
+            margin: 0 0 10px 0; 
+            text-transform: uppercase; 
+            font-weight: 900; 
+            line-height: 1; 
+            letter-spacing: -2px; 
+        }
+        @media (min-width: 900px) { 
+            h1 { font-size: 64px; } 
+        }
+
+        h2 { 
+            font-size: 24px; 
+            margin: 0 0 15px 0; 
+            font-weight: 800; 
+            border-bottom: 2px solid #000; 
+            padding-bottom: 5px; 
+            display: inline-block; 
+        }
+        p { 
+            font-size: 16px; 
+            font-weight: 500; 
+            margin: 0 0 10px 0; 
+            line-height: 1.5; 
+        }
+        .tag { 
+            display: inline-block; 
+            padding: 4px 8px; 
+            border: 2px solid #000; 
+            border-radius: 4px; 
+            font-size: 12px; 
+            font-weight: 700; 
+            background: #fff; 
+            margin-bottom: 10px; 
+        }
+
+        /* =========================================
+           4. 纯 CSS 跑马灯（Marquee）动画
+           ========================================= */
+        .marquee-wrapper {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 20px 0;
+            box-sizing: border-box;
+            display: flex;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #000;
+        }
+
+        .marquee-content span { margin: 0 30px; }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* =========================================
+           5. 导航按钮阵列
+           ========================================= */
+        .links-grid { 
+            display: flex; 
+            gap: 10px; 
+            margin-top: 20px; 
+        }
+        .links-grid a {
+            flex: 1; 
+            text-align: center; 
+            text-decoration: none; 
+            color: #000; 
+            font-weight: 800;
+            border: 2px solid #000; 
+            padding: 12px; 
+            border-radius: 8px; 
+            background: #fff;
+            box-shadow: 4px 4px 0px #000; 
+            transition: all 0.2s;
+        }
+        .links-grid a:hover { 
+            transform: translate(2px, 2px); 
+            box-shadow: 2px 2px 0px #000; 
+            background: #000; 
+            color: #fff; 
+        }
+
+        /* 响应式降维 */
+        @media (max-width: 768px) {
+            .bento-container { grid-template-columns: 1fr; }
+            .box-hero, .box-goal, .box-exp, .box-skills { grid-column: span 1; grid-row: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bento-container">
+        <!-- 主视觉盒子 -->
+        <div class="bento-box box-hero">
+            <span class="tag">Data Science＆Big Data Technology</span>
+            <h1>Jinyu Shen</h1>
+            <p><strong>Focus:</strong> Bridging data analytics and machine learning to solve real-world problems</p>
+            <div class="links-grid">
+                <a href="#" target="_blank">GitHub</a>
+                <a href="#" target="_blank">Resume</a>
+                <a href="#" target="_blank">Projects</a>
+            </div>
+        </div>
+
+        <!-- 目标盒子 -->
+        <div class="bento-box box-goal">
+            <h2>Goal</h2>
+            <p>Build data-driven solutions with actionable insights</p>
+        </div>
+
+        <!-- 经验盒子 -->
+        <div class="bento-box box-exp">
+            <h2>Experience</h2>
+            <p>ML | Big Data | Data Visualization</p>
+        </div>
+
+        <!-- 技能跑马灯盒子 -->
+        <div class="bento-box box-skills">
+            <div class="marquee-wrapper">
+                <div class="marquee-content">
+                    <span>Python</span>
+                    <span>SQL</span>
+                    <span>Machine Learning</span>
+                    <span>Pandas</span>
+                    <span>Spark</span>
+                    <span>TensorFlow</span>
+                    <span>Tableau</span>
+                    <span>Python</span>
+                    <span>SQL</span>
+                    <span>Machine Learning</span>
+                    <span>Pandas</span>
+                    <span>Spark</span>
+                    <span>TensorFlow</span>
+                    <span>Tableau</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
